@@ -16,7 +16,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerI
 use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
-use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use TBCD\BearerAuthenticatorBundle\Token\BearerToken;
 use TBCD\BearerAuthenticatorBundle\TokenEncoder\TokenEncoderInterface;
@@ -66,7 +65,7 @@ class BearerAuthenticator implements AuthenticatorInterface
     /**
      * @inheritDoc
      */
-    public function createAuthenticatedToken(PassportInterface $passport, string $firewallName): TokenInterface
+    public function createToken(Passport $passport, string $firewallName): TokenInterface
     {
         return new BearerToken($passport->getUser(), $firewallName, $passport->getUser()->getRoles());
     }
